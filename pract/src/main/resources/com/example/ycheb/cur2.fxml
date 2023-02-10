@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="319.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ycheb.Recept">
+   <children>
+      <ListView fx:id="listOfFirst" layoutX="97.0" layoutY="97.0" prefHeight="90.0" prefWidth="185.0" />
+      <ListView fx:id="listOfSecond" layoutX="300.0" layoutY="97.0" prefHeight="90.0" prefWidth="186.0" />
+      <Button fx:id="enterButton" layoutX="217.0" layoutY="242.0" mnemonicParsing="false" onAction="#click_Back" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #ad0m;" text="Назад" textAlignment="CENTER" textOverrun="CLIP">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font></Button>
+      <Label fx:id="l1" layoutX="36.0" layoutY="98.0" prefHeight="18.0" prefWidth="74.0" text="Валюта">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="l3" layoutX="36.0" layoutY="149.0" text="Продажа">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="l2" layoutX="36.0" layoutY="124.0" text="Покупка">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="firstPrice" layoutX="572.0" layoutY="5.0">
+         <font>
+            <Font size="1.0" />
+         </font>
+      </Label>
+      <Label fx:id="secondPrice" layoutY="5.0">
+         <font>
+            <Font size="1.0" />
+         </font>
+      </Label>
+      <Label fx:id="l11" layoutX="497.0" layoutY="97.0" prefHeight="18.0" prefWidth="74.0" text="Валюта">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="l21" layoutX="496.0" layoutY="123.0" text="Покупка">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="l31" layoutX="496.0" layoutY="150.0" text="Продажа">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameOne" layoutX="97.0" layoutY="72.0" prefHeight="18.0" prefWidth="74.0" text=".">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameTwo" layoutX="300.0" layoutY="72.0" prefHeight="18.0" prefWidth="74.0" text=".">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
