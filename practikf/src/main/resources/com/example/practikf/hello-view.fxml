@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Slider layoutX="530.0" layoutY="4.0" orientation="VERTICAL" prefHeight="390.0" prefWidth="62.0" />
+      <ListView layoutX="22.0" layoutY="14.0" prefHeight="368.0" prefWidth="518.0" />
+   </children>
+</AnchorPane>
