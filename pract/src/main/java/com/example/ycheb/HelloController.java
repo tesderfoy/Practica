@@ -2,6 +2,7 @@ package com.example.ycheb;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,45 +19,47 @@ import java.util.ResourceBundle;
 public class HelloController implements Initializable {
 
     @FXML
-    private Button enter, backButton;
+    private Button nextButton;
 
     @FXML
-    private ListView<String> firstList;
+    private ListView<String> listViewOne;
+    @FXML
+    private ListView<String> listViewTwo;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        listViewOne.getItems().addAll("Юнистрим", "Авангард", "НБД-Банк", "Сбербанк","ВТБ", "Альфа-Банк");
+        listViewTwo.getItems().addAll("Юнистрим", "Авангард", "НБД-Банк", "Сбербанк", "ВТБ", "Альфа-Банк");
+        listViewOne.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        listViewTwo.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    }
 
     @FXML
-    private ListView<String> secondList;
+    void next() {
 
-    @FXML
-    void enter_click(ActionEvent event) {
+        String obmen1 = "";
+        String obmen2 = "";
 
-        String choice = "";
         ObservableList<String> object;
-        object = firstList.getSelectionModel().getSelectedItems();
-
-        for (String o: object){
-            choice += o;
-        }
-        String choice1 = "";
-
         ObservableList<String> object2;
-        object2 = secondList.getSelectionModel().getSelectedItems();
 
-        for (String o2: object2){
-            choice1 += o2;
+        object = listViewOne.getSelectionModel().getSelectedItems();
+        object2 = listViewTwo.getSelectionModel().getSelectedItems();
+
+        for (String obm1: object){
+            obmen1 += obm1;
         }
-
-        if(choice1.equals("") || choice.equals("")){
-            JOptionPane.showMessageDialog(null, "Ошибка!");
+        for (String obm2: object2){
+            obmen2 += obm2;
         }
-
-        if (choice1.equals(choice)){
+        // проверка на пустоту и одинаковость
+        if(obmen2.equals("") | obmen1.equals("") |(obmen2.equals(obmen1))){
             JOptionPane.showMessageDialog(null, "Ошибка!");
         }
         else {
-            enter.getScene().getWindow().hide();
+            nextButton.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("cur2.fxml"));
+            loader.setLocation(getClass().getResource("wind2.fxml"));
             try {
                 loader.load();
             } catch (IOException e) {
@@ -65,150 +68,124 @@ public class HelloController implements Initializable {
             Parent root = loader.getRoot();
             Scene scene = new Scene(root, 600, 300);
 
-            ListView list1 = (ListView) scene.lookup("#listOfFirst");
-            ListView list2 = (ListView) scene.lookup("#listOfSecond");
+            ListView listOne = (ListView) scene.lookup("#ObmenOne");
+            ListView listTwo = (ListView) scene.lookup("#ObmenTwo");
 
-
-            Label nameOne = (Label) scene.lookup("#nameOne");
-            Label nameTwo = (Label) scene.lookup("#nameTwo");
-
-            if (choice.equals("Юнистрим")) {
-                list1.getItems().addAll("Доллар    Евро       Юань",
+            Label nameObmOne = (Label) scene.lookup("#nameObmOne");
+            Label nameObmTwo = (Label) scene.lookup("#nameObmTwo");
+           // заполнение первой таблицы
+            if (obmen1.equals("Юнистрим")) {
+                listOne.getItems().addAll("Доллар    Евро       Юань",
                                             "70.5           76          10.25",
                                             "77              82           11.5");
-                list1.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+                listOne.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 
-                nameOne.setText("Юнистрим");
+                nameObmOne.setText("Юнистрим");
             }
-            if (choice.equals("Авангард")) {
-                list1.getItems().addAll("Доллар    Евро       ",
+            if (obmen1.equals("Авангард")) {
+                listOne.getItems().addAll("Доллар    Евро       ",
                         "71             76          ",
                         "78              83           ");
-                list1.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+                listOne.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-                nameOne.setText("Авангард");
+                nameObmOne.setText("Авангард");
             }
-            if (choice.equals("НБД-Банк")) {
-                list1.getItems().addAll("Доллар      Евро       ",
+            if (obmen1.equals("НБД-Банк")) {
+                listOne.getItems().addAll("Доллар      Евро       ",
                         "73.80          78.70       ",
                         "77.70           81.10        ");
-                list1.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+                listOne.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 
-                nameOne.setText("НБД-Банк");
+                nameObmOne.setText("НБД-Банк");
             }
-            if (choice.equals("Сбербанк")) {
-                list1.getItems().addAll("Доллар    Евро       Юань",
+            if (obmen1.equals("Сбербанк")) {
+                listOne.getItems().addAll("Доллар    Евро       Юань",
                         "69.42           76.09       10.60",
                         "78.82           83.52        13.48");
-                list1.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+                listOne.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-                nameOne.setText("Сбербанк");
+                nameObmOne.setText("Сбербанк");
             }
-            if (choice.equals("ВТБ")) {
-                list1.getItems().addAll("Доллар       Евро         Юань",
+            if (obmen1.equals("ВТБ")) {
+                listOne.getItems().addAll("Доллар       Евро         Юань",
                         "72.01           75.91          10.2",
                         "77.01           80.91          11.24");
-                list1.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+                listOne.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 
-                nameOne.setText("ВТБ");
+                nameObmOne.setText("ВТБ");
             }
-            if (choice.equals("Альфа-Банк")) {
-                list1.getItems().addAll("Доллар    Евро       Юань",
+            if (obmen1.equals("Альфа-Банк")) {
+                listOne.getItems().addAll("Доллар    Евро       Юань",
                         "72              76           10.6",
                         "79               83           11.5");
-                list1.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+                listOne.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 
-                nameOne.setText("Альфа-Банк");
+                nameObmOne.setText("Альфа-Банк");
             }
 
-            if (choice1.equals("Юнистрим")) {
-                list2.getItems().addAll("Доллар    Евро       Юань",
+            //  заполнение второй таблицы
+            if (obmen2.equals("Юнистрим")) {
+                listTwo.getItems().addAll("Доллар    Евро       Юань",
                         "70.5           76          10.25",
                         "77              82           11.5");;
-                list2.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+                listTwo.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 
-                nameTwo.setText("Юнистрим");
+                nameObmTwo.setText("Юнистрим");
             }
-            if (choice1.equals("Авангард")) {
-                list2.getItems().addAll("Доллар    Евро       ",
+            if (obmen2.equals("Авангард")) {
+                listTwo.getItems().addAll("Доллар    Евро       ",
                         "71             76          ",
                         "78              83           ");
-                list2.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+                listTwo.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-                nameTwo.setText("Авангард");
+                nameObmTwo.setText("Авангард");
             }
-            if (choice1.equals("НБД-Банк")) {
-                list2.getItems().addAll("Доллар      Евро       ",
+            if (obmen2.equals("НБД-Банк")) {
+                listTwo.getItems().addAll("Доллар      Евро       ",
                         "73.80          78.70       ",
                         "77.70           81.10        ");
-                list2.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+                listTwo.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 
-                nameTwo.setText("НБД-Банк");
+                nameObmTwo.setText("НБД-Банк");
             }
-            if (choice1.equals("Сбербанк")) {
-                list2.getItems().addAll("Доллар    Евро       Юань",
+            if (obmen2.equals("Сбербанк")) {
+                listTwo.getItems().addAll("Доллар    Евро       Юань",
                         "69.42           76.09       10.60",
                         "78.82           83.52        13.48");
-                list2.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+                listTwo.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-                nameTwo.setText("Сбербанк");
+                nameObmTwo.setText("Сбербанк");
             }
-
-            if (choice1.equals("ВТБ")) {
-                list2.getItems().addAll("Доллар       Евро         Юань",
+            if (obmen2.equals("ВТБ")) {
+                listTwo.getItems().addAll("Доллар       Евро         Юань",
                         "72.01           75.91          10.2",
                         "77.01           80.91          11.24");
-                list2.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+                listTwo.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-                nameTwo.setText("ВТБ");
+                nameObmTwo.setText("ВТБ");
             }
-            if (choice1.equals("Альфа-Банк")) {
-                list2.getItems().addAll("Доллар    Евро       Юань",
+            if (obmen2.equals("Альфа-Банк")) {
+                listTwo.getItems().addAll("Доллар    Евро       Юань",
                         "72              76           10.6",
                         "79               83           11.5");
-                list2.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+                listTwo.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 
-                nameTwo.setText("Альфа-Банк");
+                nameObmTwo.setText("Альфа-Банк");
             }
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
         }
     }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        firstList.getItems().addAll("Юнистрим", "Авангард", "НБД-Банк", "Сбербанк","ВТБ", "Альфа-Банк"); //получение в лист записанных значений
-        firstList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        secondList.getItems().addAll("Юнистрим", "Авангард", "НБД-Банк", "Сбербанк", "ВТБ", "Альфа-Банк");
-        secondList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-    }
 
 
-    @FXML
-    void click_Back(ActionEvent event) {
-        Stage stageCLose = (Stage) backButton.getScene().getWindow();
-        stageCLose.close();
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("cur.fxml"));
-        try {
-            loader.load();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        Parent root = loader.getRoot();
-        Scene scene = new Scene(root,500,300);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-    }
-    }
+}
 
